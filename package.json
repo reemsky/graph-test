@@ -1,0 +1,9 @@
+{
+  "name": "graph-test",
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {
+    "cytoscape": "^2.7.10"
+  }
+}
