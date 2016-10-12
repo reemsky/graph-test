@@ -1,8 +1,5 @@
 {
   "name": "graph-test",
-  "scripts": {
-    "start": "node ."
-  },
   "dependencies": {},
   "devDependencies": {
     "gulp-live-server": "0.0.30",
