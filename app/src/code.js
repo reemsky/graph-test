@@ -73,8 +73,7 @@ $('#cy').cytoscape({
   },
   
   ready: function(){
-    window.cy = this;
-    
+    window.cy = this; 
     // giddy up
   }
 });
@@ -96,9 +95,7 @@ function update(){
 
 ]);
 
-
   cy.layout( { name: 'random'});
-  //cy.fit();
 }
 
 
