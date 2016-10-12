@@ -3,7 +3,9 @@
   "scripts": {
     "start": "node ."
   },
-  "dependencies": {
-    "cytoscape": "^2.7.10"
+  "dependencies": {},
+  "devDependencies": {
+    "gulp-live-server": "0.0.30",
+    "gulp-main-bower-files": "^1.5.3"
   }
 }
