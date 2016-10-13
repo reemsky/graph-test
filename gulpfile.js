@@ -33,8 +33,8 @@ gulp.task('bower-deps', function(){
 
 gulp.task('scripts', function(){
   gulp.src([path.source.js])
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'))
+//    .pipe(jshint())
+//    .pipe(jshint.reporter('jshint-stylish'))
     .pipe(gulp.dest(path.dest.js))
 });
 

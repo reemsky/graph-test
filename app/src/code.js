@@ -95,9 +95,14 @@ function update(){
 
 ]);
 
-  cy.layout( { name: 'random'});
-}
+var options = {
+   name: 'cose',
+   padding: 10,
+   randomize: true
+};
 
+  cy.layout(options);
+}
 
 function del(){
   var j = cy.$("*");

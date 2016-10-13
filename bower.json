@@ -1,5 +1,7 @@
 {
+  "name": "graph-test",
   "dependencies": {
-    "cytoscape": "^2.7.10"
+    "cytoscape": "^2.7.10",
+    "jquery": "^3.1.1"
   }
 }
