@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var jshint = require('gulp-jshint');
 var gls = require('gulp-live-server');
 var mainBowerFiles = require('gulp-main-bower-files');
 
@@ -32,6 +33,8 @@ gulp.task('bower-deps', function(){
 
 gulp.task('scripts', function(){
   gulp.src([path.source.js])
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
     .pipe(gulp.dest(path.dest.js))
 });
 

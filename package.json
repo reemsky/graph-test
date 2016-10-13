@@ -2,7 +2,10 @@
   "name": "graph-test",
   "dependencies": {},
   "devDependencies": {
+    "gulp-jshint": "^2.0.1",
     "gulp-live-server": "0.0.30",
-    "gulp-main-bower-files": "^1.5.3"
+    "gulp-main-bower-files": "^1.5.3",
+    "jshint": "^2.9.3",
+    "jshint-stylish": "^2.2.1"
   }
 }
