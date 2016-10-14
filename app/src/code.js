@@ -1,11 +1,13 @@
+var layoutOptions = {
+   name: 'cose',
+   padding: 10,
+   randomize: true
+};
+
 $(function(){ // on dom ready
 
 $('#cy').cytoscape({
-  layout: {
-    name: 'cose',
-    padding: 10,
-    randomize: true
-  },
+  layout: layoutOptions,
   
   style: cytoscape.stylesheet()
     .selector('node')
@@ -80,6 +82,11 @@ $('#cy').cytoscape({
 
 }); // on dom ready
 
+function getRandomName(){
+  var names = ['Aleksandrs', 'Sergejs', 'Jelena', 'Dmitrijs', 'Baiba', 'Guna', 'Dzintra'];
+  return names[Math.floor(Math.random()*names.length)];
+}
+
 function update(){
   var eles = cy.add([
   { group: "nodes", data: { id: "n0", name: "John", faveColor: '#6FB1FC', faveShape: 'ellipse', weight: 100}},
@@ -87,21 +94,15 @@ function update(){
   { group: "nodes", data: { id: "n2", name: "William", faveColor: '#6FB1FC', faveShape: 'ellipse', weight: 70}},
   { group: "nodes", data: { id: "n3", name: "George", faveColor: '#6FB1FC', faveShape: 'ellipse', weight: 55}},
   { group: "nodes", data: { id: "n4", name: "Mary", faveColor: '#6FB1FC', faveShape: 'ellipse', weight: 75}},
+
   { group: "edges", data: { id: "e0", source: "n3", target: "n4", faveColor: '#EDA1ED', label: "sum=500", strength: 100} },
   { group: "edges", data: { id: "e1", source: "n2", target: "n3", faveColor: '#F5A45D', strength: 100} },
   { group: "edges", data: { id: "e2", source: "n1", target: "n3", faveColor: '#EDA1ED', strength: 50} },
   { group: "edges", data: { id: "e3", source: "n0", target: "n3", faveColor: '#86B342', strength: 90} },
   { group: "edges", data: { id: "e4", source: "n0", target: "n1", faveColor: '#86B342', strength: 85} }
-
 ]);
 
-var options = {
-   name: 'cose',
-   padding: 10,
-   randomize: true
-};
-
-  cy.layout(options);
+  cy.layout(layoutOptions);
 }
 
 function del(){
