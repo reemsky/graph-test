@@ -83,21 +83,109 @@ $('#cy').cytoscape({
 }); // on dom ready
 
 function getRandomName(){
-  var names = ['Aleksandrs', 'Sergejs', 'Jelena', 'Dmitrijs', 'Baiba', 'Guna', 'Dzintra'];
+  var names = ['Aleksandrs', 'Sergejs', 'Jelena', 'Dmitrijs', 'Baiba', 'Guna', 'Dzintra', 'Aelita', 'Gatis', 'Janis', 'Peteris', 'Arturs'];
+  var names = ['Callie Bednarz',
+'Krissy Haro',
+'Vanessa Kettering',
+'Sylvester Spearman',
+'Luetta Koll',
+'Jacinda Cassady',
+'Elene Richeson',
+'Nick Napier',
+'Meta Remley',
+'Danette Zayac',
+'Miyoko Hajduk',
+'Alta Leggett',
+'Argentina Hauck',
+'Maricruz Faulkner',
+'Ardelle Mckey',
+'Darline Smalling',
+'Marti Merlos',
+'Marilu Kurth',
+'Milan Sester',
+'Alayna Hazelrigg',
+'Arlinda Callas',
+'Hisako Finnerty',
+'Shana Moffet',
+'Kelley Choy',
+'Twanda Vanantwerp',
+'Gennie Brian',
+'Emile Goley',
+'Zena Dunklin',
+'Shondra Woodall',
+'Terresa Fuentes'];
+
   return names[Math.floor(Math.random()*names.length)];
 }
-function getRandomNodes(){
-  return[
-    { group: "nodes", data: { id: "n0", name: "John", faveColor: '#6FB1FC', faveShape: 'ellipse', weight: 100}},
-    { group: "nodes", data: { id: "n1", name: "Jim", faveColor: '#6FB1FC', faveShape: 'ellipse', weight: 75}},
-    { group: "nodes", data: { id: "n2", name: "William", faveColor: '#6FB1FC', faveShape: 'ellipse', weight: 70}},
-    { group: "nodes", data: { id: "n3", name: "George", faveColor: '#6FB1FC', faveShape: 'ellipse', weight: 55}},
-    { group: "nodes", data: { id: "n4", name: "Mary", faveColor: '#6FB1FC', faveShape: 'ellipse', weight: 75}}
-    ]
-  ;
+
+function getRandomColor(){
+  var colors = [ '#EDA1ED', '#F5A45D', '#86B342' ];
+  return colors[Math.floor(Math.random()*colors.length)];
 }
 
-function getRandomEdges(){
+function getRandom(arr, n) {
+    var result = new Array(n),
+        len = arr.length,
+        taken = new Array(len);
+    if (n > len)
+        throw new RangeError("getRandom: more elements taken than available");
+    while (n--) {
+        var x = Math.floor(Math.random() * len);
+        result[n] = arr[x in taken ? taken[x] : x];
+        taken[x] = --len;
+    }
+    return result;
+}
+
+
+function getRandomNodes(count){
+  var nodes = [];
+  for (i = 0; i < count; i++) { 
+    nodes[i] = { group: "nodes", data: { id: "n" + i, name: getRandomName(), faveColor: '#6FB1FC', faveShape: 'ellipse', weight: 100}};
+  }
+
+  return nodes;
+}
+
+function getRandomEdges(nodes){
+  var nodesIDs = [];
+  var count = 0;
+  var result = [];
+  var copy = [];
+  var index = -1;
+  var edges = [];
+  var edge = {};
+  var currentNode = '';
+  var edgeID = 0;
+  var edgeFactor = 2;
+  for (i = 0; i < nodes.length; i++) {
+    nodesIDs[i] = nodes[i].data.id;
+  }
+  console.log(nodesIDs);
+  
+  
+  for (i = 0; i < nodesIDs.length; i++) {
+    currentNode = nodesIDs[i];
+    count = Math.floor(1 + Math.random()* edgeFactor);
+    console.log("processing node:" + currentNode + " edges count " + count);
+    
+    copy = nodesIDs.slice();
+    index = copy.indexOf(currentNode);
+    if(index != -1){
+      copy.splice( index, 1 );
+    }
+    result = getRandom(copy, count);
+    console.log(result);
+    for (z = 0; z < result.length; z++){
+      console.log(currentNode + "->" + result[z]);
+        edge = { group: "edges", data: { id: "e" + edgeID, source: currentNode, target: result[z], faveColor: getRandomColor(), label: getRandom([500, 300, 200, 100], 1), strength: 100} };
+        edges[edgeID] = edge;
+        edgeID ++;
+    }
+  }
+  console.log (edges);
+
+ return edges
   return [{ group: "edges", data: { id: "e0", source: "n3", target: "n4", faveColor: '#EDA1ED', label: "sum=500", strength: 100} },
     { group: "edges", data: { id: "e1", source: "n2", target: "n3", faveColor: '#F5A45D', strength: 100} },
     { group: "edges", data: { id: "e2", source: "n1", target: "n3", faveColor: '#EDA1ED', strength: 50} },
@@ -107,14 +195,14 @@ function getRandomEdges(){
 
 }
 
-function getRandomGraph(){
-  var nodes = getRandomNodes();
-  var edges = getRandomEdges();  
+function getRandomGraph(count){
+  var nodes = getRandomNodes(count);
+  var edges = getRandomEdges(nodes);  
   return nodes.concat(edges);
 }
   
 function update(){
-  var eles = cy.add(getRandomGraph());
+  var eles = cy.add(getRandomGraph(10));
   cy.layout(layoutOptions);
 }
 
