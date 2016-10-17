@@ -185,14 +185,7 @@ function getRandomEdges(nodes){
   }
   console.log (edges);
 
- return edges;
-  return [{ group: "edges", data: { id: "e0", source: "n3", target: "n4", faveColor: '#EDA1ED', label: "sum=500", strength: 100} },
-    { group: "edges", data: { id: "e1", source: "n2", target: "n3", faveColor: '#F5A45D', strength: 100} },
-    { group: "edges", data: { id: "e2", source: "n1", target: "n3", faveColor: '#EDA1ED', strength: 50} },
-    { group: "edges", data: { id: "e3", source: "n0", target: "n3", faveColor: '#86B342', strength: 90} },
-    { group: "edges", data: { id: "e4", source: "n0", target: "n1", faveColor: '#86B342', strength: 85} }
-    ];
-
+  return edges;
 }
 
 function getRandomGraph(count){
@@ -211,3 +204,14 @@ function del(){
   var j = cy.$("*");
   cy.remove( j );
 }
+function filter(){
+  var filter = ($('#filter_value').val());
+  
+  var eles = cy.edges("[label<" + filter + "]");
+  cy.remove(eles);
+  console.log(cy.edges("*"));
+  
+  
+}
+
+  
