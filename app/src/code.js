@@ -205,13 +205,17 @@ function del(){
   cy.remove( j );
 }
 function filter(){
-  var filter = ($('#filter_value').val());
-  
+  var filter = ($('#filter_value').val());  
   var eles = cy.edges("[label<" + filter + "]");
   cy.remove(eles);
-  console.log(cy.edges("*"));
   
-  
+  var allNodes = cy.nodes("*");
+  var edges = cy.edges("*");
+  var nodesWithEdges = edges.connectedNodes();
+  var diffNodes = allNodes.difference(nodesWithEdges);
+  cy.remove(diffNodes);
+
+    
 }
 
   
