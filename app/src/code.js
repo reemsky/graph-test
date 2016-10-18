@@ -68,7 +68,7 @@ $('#cy').cytoscape({
       { data: { source: 'k', target: 'j', faveColor: '#86B342', strength: 100 } },
       { data: { source: 'k', target: 'e', faveColor: '#86B342', strength: 100 } },
       { data: { source: 'k', target: 'g', faveColor: '#86B342', strength: 100 } },
-      { data: { source: 's', target: 'g', faveColor: '#86B342', strength: 100, label: 'total = 100' } },
+      { data: { source: 's', target: 'g', faveColor: '#86B342', strength: 100, label: '300' } },
       
       { data: { source: 'g', target: 'j', faveColor: '#F5A45D', strength: 90 } }
     ]
@@ -214,8 +214,6 @@ function filter(){
   var nodesWithEdges = edges.connectedNodes();
   var diffNodes = allNodes.difference(nodesWithEdges);
   cy.remove(diffNodes);
-
-    
+  cy.layout(layoutOptions);
 }
-
   
