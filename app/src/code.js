@@ -84,7 +84,7 @@ $('#cy').cytoscape({
 
 function getRandomName(){
   var names = ['Aleksandrs', 'Sergejs', 'Jelena', 'Dmitrijs', 'Baiba', 'Guna', 'Dzintra', 'Aelita', 'Gatis', 'Janis', 'Peteris', 'Arturs'];
-  var names = ['Callie Bednarz',
+  names = ['Callie Bednarz',
 'Krissy Haro',
 'Vanessa Kettering',
 'Sylvester Spearman',
@@ -214,6 +214,13 @@ function filter(){
   var nodesWithEdges = edges.connectedNodes();
   var diffNodes = allNodes.difference(nodesWithEdges);
   cy.remove(diffNodes);
-  cy.layout(layoutOptions);
+//  cy.layout(layoutOptions);
 }
-  
+
+function loadJSONFile(){
+  $.getJSON("data.json", function(json) {
+    //console.log(json); // this will show the info it in firebug console
+    var eles = cy.add(json);
+    cy.layout(layoutOptions);
+});
+}

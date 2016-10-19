@@ -1,0 +1,19 @@
+[{
+	"group": "nodes",
+	"data": {
+		"id": 101,
+		"name": "Test100",
+		"faveColor": "#6FB1FC",
+		"faveShape": "ellipse",
+		"weight": 100
+	}
+}, {
+	"group": "nodes",
+	"data": {
+		"id": 102,
+		"name": "Test101",
+		"faveColor": "#6FB1FC",
+		"faveShape": "ellipse",
+		"weight": 100
+	}
+}]
