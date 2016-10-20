@@ -16,26 +16,26 @@ gulp.task('lr-server', ['build', 'watch'], function(){
 gulp.task('static', function() {
   
   gulp.src([path.source.html, path.source.json])
-    .pipe(gulp.dest(path.dest.root))
+    .pipe(gulp.dest(path.dest.root));
 });
 
 
 gulp.task('styles', function() {
   gulp.src([path.source.styles])
-    .pipe(gulp.dest(path.dest.styles))
+    .pipe(gulp.dest(path.dest.styles));
 });
 
 gulp.task('bower-deps', function(){
   gulp.src(path.source.bower_file)
     .pipe(mainBowerFiles())
-    .pipe(gulp.dest(path.dest.js))
+    .pipe(gulp.dest(path.dest.js));
 });
 
 gulp.task('scripts', function(){
-  gulp.src([path.source.js])
+  gulp.src(['gulpfile.js', path.source.js])
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(gulp.dest(path.dest.js))
+    .pipe(gulp.dest(path.dest.js));
 });
 
 gulp.task('build', ['static', 'styles', 'scripts', 'bower-deps']);
